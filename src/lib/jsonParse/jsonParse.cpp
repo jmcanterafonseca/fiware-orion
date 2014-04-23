@@ -275,14 +275,17 @@ static std::string jsonParse
   treated = treat(ciP, path, nodeValue, parseVector, parseDataP);
 
 
-  if ((isCompoundPath(path.c_str()) == true) && (nodeValue == ""))
+  boost::property_tree::ptree subtreeX     = (boost::property_tree::ptree) v.second;
+  int                         noOfChildren = subtreeX.size();
+
+  if ((isCompoundPath(path.c_str()) == true) && (nodeValue == "") && noOfChildren != 0)
   {
     std::string s;
 
     LM_T(LmtCompoundValue, ("Calling eatCompound for '%s'", path.c_str()));
     eatCompound(ciP, NULL, v, "");
     compoundValueEnd(ciP, parseDataP);
-
+    LM_M(("After compoundValueEnd: ciP->answer == '%s'", ciP->answer.c_str()));
     if (ciP->httpStatusCode != SccOk)
       return ciP->answer;
 
@@ -296,6 +299,9 @@ static std::string jsonParse
     LM_E(("ERROR: '%s'", ciP->answer.c_str()));
     return ciP->answer;
   }
+
+  if (noOfChildren == 0)
+    return "OK";
 
   boost::property_tree::ptree subtree = (boost::property_tree::ptree) v.second;
   BOOST_FOREACH(boost::property_tree::ptree::value_type &v2, subtree)

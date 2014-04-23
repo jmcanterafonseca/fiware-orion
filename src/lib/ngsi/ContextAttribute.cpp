@@ -186,18 +186,15 @@ std::string ContextAttribute::check(RequestType requestType, Format format, std:
   if ((name == "") || (name == "not in use"))
     return "missing attribute name";
 
-  if (compoundValueP != NULL)
+  if ((compoundValueP != NULL) && (compoundValueP->childV.size() != 0))
   {
     // FIXME P9: Use CompoundValueNode::check here and stop calling it from where it is called right now.
     //           Also, change CompoundValueNode::check to return std::string
     return "OK";
   }
 
-  if (requestType != UpdateContext) // FIXME P9: this is just to make harness test work - what is this?
-  {
-    if ((value == "") || (value == "not in use"))
-      return "missing attribute value";
-  }
+  if ((requestType != UpdateContext) && ((value == "") || (value == "not in use")))
+    return "missing attribute value";
 
   return "OK";
 }
