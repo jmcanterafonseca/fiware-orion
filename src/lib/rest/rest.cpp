@@ -49,7 +49,7 @@
 
 /* ****************************************************************************
 *
-* IP - 
+* IP -
 */
 #define  LOCAL_IP_V6  "::"
 #define  LOCAL_IP_V4  "0.0.0.0"
@@ -58,7 +58,7 @@
 
 /* ****************************************************************************
 *
-* PAYLOAD_SIZE - 
+* PAYLOAD_SIZE -
 */
 #define PAYLOAD_SIZE       (64 * 1024 * 1024)
 #define PAYLOAD_MAX_SIZE   (1 * 1024 * 1024)
@@ -90,7 +90,7 @@ __thread char                    static_buffer[STATIC_BUFFER_SIZE + 1];
 
 /* ****************************************************************************
 *
-* uriArgumentGet - 
+* uriArgumentGet -
 */
 static int uriArgumentGet(void* cbDataP, MHD_ValueKind kind, const char* ckey, const char* val)
 {
@@ -199,7 +199,7 @@ static int uriArgumentGet(void* cbDataP, MHD_ValueKind kind, const char* ckey, c
 
 /* ****************************************************************************
 *
-* httpHeaderGet - 
+* httpHeaderGet -
 */
 static int httpHeaderGet(void* cbDataP, MHD_ValueKind kind, const char* ckey, const char* value)
 {
@@ -217,11 +217,13 @@ static int httpHeaderGet(void* cbDataP, MHD_ValueKind kind, const char* ckey, co
   else if (strcasecmp(key.c_str(), "Content-Length") == 0)  headerP->contentLength  = atoi(value);
   else if (strcasecmp(key.c_str(), "Fiware-Service") == 0)  headerP->tenant         = value;
   else if (strcasecmp(key.c_str(), "X-Auth-Token") == 0)    headerP->xauthToken     = value;
+  else if(strcasecmp(key.c_str(), "Origin") == 0)           headerP->origin = value;
   else if (strcasecmp(key.c_str(), "Fiware-Servicepath") == 0)
   {
     headerP->servicePath         = value;
     headerP->servicePathReceived = true;
   }
+
   else
     LM_T(LmtHttpUnsupportedHeader, ("'unsupported' HTTP header: '%s', value '%s'", ckey, value));
 
@@ -247,20 +249,20 @@ static int httpHeaderGet(void* cbDataP, MHD_ValueKind kind, const char* ckey, co
 
 /* ****************************************************************************
 *
-* wantedOutputSupported - 
+* wantedOutputSupported -
 */
 static Format wantedOutputSupported(const std::string& acceptList, std::string* charsetP)
 {
   std::vector<std::string>  vec;
   char*                     copy;
 
-  if (acceptList.length() == 0) 
+  if (acceptList.length() == 0)
   {
     /* HTTP RFC states that a missing Accept header must be interpreted as if the client is
      * accepting any type */
     copy = strdup("*/*");
   }
-  else 
+  else
   {
     copy = strdup((char*) acceptList.c_str());
   }
@@ -274,7 +276,7 @@ static Format wantedOutputSupported(const std::string& acceptList, std::string* 
      if (comma != NULL)
      {
         *comma = 0;
-        
+
         cP = wsStrip(cP);
         vec.push_back(cP);
         cP = comma;
@@ -327,7 +329,7 @@ static Format wantedOutputSupported(const std::string& acceptList, std::string* 
      if (format == "application/xml")  xml  = true;
      if (format == "application/json") json = true;
      if (format == "*/json")           json = true;
-     
+
      if ((acceptTextXml == true) && (format == "text/xml"))  xml = true;
 
      //
@@ -350,7 +352,7 @@ static Format wantedOutputSupported(const std::string& acceptList, std::string* 
 
 /* ****************************************************************************
 *
-* serve - 
+* serve -
 */
 static void serve(ConnectionInfo* ciP)
 {
@@ -385,7 +387,7 @@ static void requestCompleted
 
 /* ****************************************************************************
 *
-* outFormatCheck - 
+* outFormatCheck -
 */
 static int outFormatCheck(ConnectionInfo* ciP)
 {
@@ -473,7 +475,7 @@ int servicePathCheck(ConnectionInfo* ciP, const char* servicePath)
         continue;
     }
 
-    const char* comp = compV[ix].c_str();      
+    const char* comp = compV[ix].c_str();
 
     for (unsigned int cIx = 0; cIx < strlen(comp); ++cIx)
     {
@@ -493,7 +495,7 @@ int servicePathCheck(ConnectionInfo* ciP, const char* servicePath)
 
 /* ****************************************************************************
 *
-* removeTrailingSlash - 
+* removeTrailingSlash -
 */
 static char* removeTrailingSlash(std::string path)
 {
@@ -512,7 +514,7 @@ static char* removeTrailingSlash(std::string path)
 
 /* ****************************************************************************
 *
-* servicePathSplit - 
+* servicePathSplit -
 */
 int servicePathSplit(ConnectionInfo* ciP)
 {
@@ -533,7 +535,7 @@ int servicePathSplit(ConnectionInfo* ciP)
 
   for (int ix = 0; ix < servicePaths; ++ix)
   {
-    ciP->servicePathV[ix] = std::string(wsStrip((char*) ciP->servicePathV[ix].c_str()));    
+    ciP->servicePathV[ix] = std::string(wsStrip((char*) ciP->servicePathV[ix].c_str()));
     ciP->servicePathV[ix] = removeTrailingSlash(ciP->servicePathV[ix]);
 
     LM_T(LmtServicePath, ("Service Path %d: '%s'", ix, ciP->servicePathV[ix].c_str()));
@@ -565,7 +567,7 @@ static int contentTypeCheck(ConnectionInfo* ciP)
   //
   // Four cases:
   //   1. If there is no payload, the Content-Type is not interesting
-  //   2. Payload present but no Content-Type 
+  //   2. Payload present but no Content-Type
   //   3. text/xml used and acceptTextXml is setto true (iotAgent only)
   //   4. Content-Type present but not supported
 
@@ -604,7 +606,7 @@ static int contentTypeCheck(ConnectionInfo* ciP)
 
 /* ****************************************************************************
 *
-* urlCheck - 
+* urlCheck -
 *
 * Returns 'true' if the URL is OK, 'false' otherwise.
 * ciP->answer and ciP->httpStatusCode are set if an error is encountered.
@@ -689,7 +691,7 @@ std::string defaultServicePath(const char* url, const char* method)
 
 /* ****************************************************************************
 *
-* connectionTreat - 
+* connectionTreat -
 *
 * This is the MHD_AccessHandlerCallback function for MHD_start_daemon
 * This function returns:
@@ -771,12 +773,12 @@ static int connectionTreat
 
     //
     // URI parameters
-    // 
+    //
     ciP->uriParam[URI_PARAM_NOTIFY_FORMAT]      = DEFAULT_PARAM_NOTIFY_FORMAT;
     ciP->uriParam[URI_PARAM_PAGINATION_OFFSET]  = DEFAULT_PAGINATION_OFFSET;
     ciP->uriParam[URI_PARAM_PAGINATION_LIMIT]   = DEFAULT_PAGINATION_LIMIT;
     ciP->uriParam[URI_PARAM_PAGINATION_DETAILS] = DEFAULT_PAGINATION_DETAILS;
-    
+
     MHD_get_connection_values(connection, MHD_GET_ARGUMENT_KIND, uriArgumentGet, ciP);
     if (ciP->httpStatusCode != SccOk)
     {
@@ -901,7 +903,7 @@ static int connectionTreat
 
 /* ****************************************************************************
 *
-* restStart - 
+* restStart -
 */
 static int restStart(IpVersion ipVersion, const char* httpsKey = NULL, const char* httpsCertificate = NULL)
 {
@@ -914,7 +916,7 @@ static int restStart(IpVersion ipVersion, const char* httpsKey = NULL, const cha
   }
 
   if ((ipVersion == IPV4) || (ipVersion == IPDUAL))
-  { 
+  {
     memset(&sad, 0, sizeof(sad));
     if (inet_pton(AF_INET, bindIp, &(sad.sin_addr.s_addr)) != 1)
     {
@@ -959,10 +961,10 @@ static int restStart(IpVersion ipVersion, const char* httpsKey = NULL, const cha
     {
       mhdStartError = false;
     }
-  }  
+  }
 
   if ((ipVersion == IPV6) || (ipVersion == IPDUAL))
-  { 
+  {
     memset(&sad_v6, 0, sizeof(sad_v6));
     if (inet_pton(AF_INET6, bindIPv6, &(sad_v6.sin6_addr.s6_addr)) != 1)
     {
@@ -1020,7 +1022,7 @@ static int restStart(IpVersion ipVersion, const char* httpsKey = NULL, const cha
 
 /* ****************************************************************************
 *
-* restInit - 
+* restInit -
 *
 * FIXME P5: add vector of the accepted content-types, instead of the bool
 *           argument _acceptTextXml that was added for iotAgent only.

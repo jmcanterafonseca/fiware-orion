@@ -31,7 +31,7 @@
 
 /* ****************************************************************************
 *
-* HttpHeaders - 
+* HttpHeaders -
 */
 typedef struct HttpHeaders
 {
@@ -51,6 +51,7 @@ typedef struct HttpHeaders
   std::string   tenant;
   std::string   servicePath;
   std::string   xauthToken;
+  std::string   origin;
 
   bool          servicePathReceived;
 

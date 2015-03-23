@@ -53,9 +53,11 @@
 
 
 static int replyIx = 0;
+// This value is got from the command line
+extern char allowedOrigin[64];
 /* ****************************************************************************
 *
-* restReply - 
+* restReply -
 */
 void restReply(ConnectionInfo* ciP, const std::string& answer)
 {
@@ -85,6 +87,15 @@ void restReply(ConnectionInfo* ciP, const std::string& answer)
       MHD_add_response_header(response, "Content-Type", "application/xml");
     else if (ciP->outFormat == JSON)
       MHD_add_response_header(response, "Content-Type", "application/json");
+
+    // If any origin is allowed the header is sent always
+    if(strcmp(allowedOrigin, "*") == 0) {
+      MHD_add_response_header(response, "Access-Control-Allow-Origin", "*");
+    }
+    // If we only allow an specific origin only the header is sent if the origins matches
+    else if(strcmp(ciP->httpHeaders.origin.c_str(), allowedOrigin) == 0) {
+       MHD_add_response_header(response, "Access-Control-Allow-Origin", allowedOrigin);
+    }
   }
 
   MHD_queue_response(ciP->connection, ciP->httpStatusCode, response);
@@ -97,9 +108,9 @@ void restReply(ConnectionInfo* ciP, const std::string& answer)
 *
 * tagGet - return a tag (request type) depending on the incoming request string
 *
-* This function is called only from restErrorReplyGet, but as the parameter 
+* This function is called only from restErrorReplyGet, but as the parameter
 * 'request' is simply 'forwarded' from restErrorReplyGet, the 'request' can
-* have various contents - for that the different strings of 'request'. 
+* have various contents - for that the different strings of 'request'.
 */
 static std::string tagGet(const std::string& request)
 {
@@ -138,13 +149,13 @@ static std::string tagGet(const std::string& request)
 
 /* ****************************************************************************
 *
-* restErrorReplyGet - 
+* restErrorReplyGet -
 *
 * This function renders an error reply depending on the 'request' type.
 * Many responses have different syntax and especially the tag in the reply
 * differs (registerContextResponse, discoverContextAvailabilityResponse etc).
 *
-* Also, the function is called from more than one place, especially from 
+* Also, the function is called from more than one place, especially from
 * restErrorReply, but also from where the payload type is matched against the request URL.
 * Where the payload type is matched against the request URL, the incoming 'request' is a
 * request and not a response.
@@ -228,7 +239,7 @@ std::string restErrorReplyGet(ConnectionInfo* ciP, Format format, const std::str
       OrionError orionError(errorCode);
 
       LM_T(LmtRest, ("Unknown tag: '%s', request == '%s'", tag.c_str(), request.c_str()));
-      
+
       reply = orionError.render(format, indent);
    }
 

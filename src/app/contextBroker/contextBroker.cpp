@@ -35,7 +35,7 @@
 *   -cert: path to a file containing a certificate describing the server in human readable tokens
 *
 * These files are generated before starting the broker:
-* 
+*
 * o private key:
 *     % openssl genrsa -out server.key 1024
 *
@@ -207,6 +207,7 @@ bool            https;
 bool            mtenant;
 char            rush[256];
 double          timeout;
+char            allowedOrigin[64];
 
 
 
@@ -239,7 +240,7 @@ double          timeout;
 #define HTTPSCERTFILE_DESC  "certificate key file (for https)"
 #define RUSH_DESC           "rush host (IP:port)"
 #define MULTISERVICE_DESC   "service multi tenancy mode"
-
+#define ALLOWED_ORIGIN_DESC "CORS allowed origin. use '*' for any"
 
 
 /* ****************************************************************************
@@ -274,6 +275,7 @@ PaArgument paArgs[] =
   { "-rush",         rush,          "RUSH",           PaString, PaOpt, _i "",      PaNL,   PaNL,  RUSH_DESC          },
   { "-multiservice", &mtenant,      "MULTI_SERVICE",  PaBool,   PaOpt, false,      false,  true,  MULTISERVICE_DESC  },
 
+  { "-corsOrigin",   allowedOrigin, "ALLOWED_ORIGIN", PaString, PaOpt, _i "",      PaNL,   PaNL,  ALLOWED_ORIGIN_DESC},
 
   PA_END_OF_ARGS
 };
@@ -799,7 +801,7 @@ PaArgument paArgs[] =
 
 
 /* *****************************************************************************
-*  
+*
 * log requests
 * The documentation (Installation and Admin Guide) says /log/trace ...
 * ... and to maintain backward compatibility we keep supporting /log/traceLevel too
@@ -1085,7 +1087,7 @@ void exitFunc(void)
 
 /* ****************************************************************************
 *
-* description - 
+* description -
 */
 const char* description =
   "\n"
