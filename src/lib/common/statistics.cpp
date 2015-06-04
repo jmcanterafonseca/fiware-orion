@@ -200,5 +200,7 @@ void statisticsUpdate(RequestType request, Format inFormat)
   case AttributesForEntityType:                          ++noOfAttributesForEntityTypeRequest; break;
   case RtEntityTypesResponse:                            ++noOfEntityTypesResponse; break;
   case RtAttributesForEntityTypeResponse:                ++noOfAttributesForEntityTypeResponse; break;
+
+  case EntryPointsV2:                               break;
   }
 }

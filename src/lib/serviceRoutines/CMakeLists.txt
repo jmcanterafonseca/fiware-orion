@@ -97,6 +97,8 @@ getEntityByIdAttributeByNameWithTypeAndId.cpp
 postEntityByIdAttributeByNameWithTypeAndId.cpp
 postSubscribeContextConvOp.cpp
 postSubscribeContextAvailabilityConvOp.cpp
+
+entryPointsTreat.cpp
 )
 
 SET (HEADERS
@@ -161,6 +163,8 @@ postContextEntitiesByEntityIdAndType.h
 getEntityByIdAttributeByNameWithTypeAndId.h
 postEntityByIdAttributeByNameWithTypeAndId.h
 postSubscribeContextConvOp.h
+
+entryPointsTreat.h
 )
 
 

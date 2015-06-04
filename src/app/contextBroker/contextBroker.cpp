@@ -176,6 +176,8 @@
 #include "common/string.h"
 
 
+#include "serviceRoutines/entryPointsTreat.h"
+
 
 /* ****************************************************************************
 *
@@ -528,6 +530,11 @@ PaArgument paArgs[] =
 #define CEAAT_POST_WORD     "registerProviderRequest"
 
 
+//
+// v2 FIWARE-NGSI Simple API
+//
+#define EPS                  EntryPointsV2
+#define EPS_V2               1, { "v2"                                   }
 
 //
 // Log, version, statistics ...
@@ -819,6 +826,10 @@ PaArgument paArgs[] =
   { "*",      CEAAT,   CEAAT_COMPS_V1,       "",               badVerbGetPostOnly                                  }
 
 
+#define SIMPLE_API_V2                                                                                                \
+  { "GET",    EPS,   EPS_V2,           "",              entryPointsTreat                                           }, \
+  { "*",      EPS,   EPS_V2,           "",              badVerbAllFour                                             }
+
 
 /* *****************************************************************************
 *  
@@ -908,6 +919,9 @@ RestService restServiceV[] =
   REGISTRY_CONVENIENCE_OPERATIONS_V1,
   CONVENIENCE_OPERATIONS_V0,
   CONVENIENCE_OPERATIONS_V1,
+
+  SIMPLE_API_V2,
+
   LOG_REQUESTS_V0,
   LOG_REQUESTS_V1,
   STAT_REQUESTS_V0,

@@ -101,6 +101,8 @@ typedef enum RequestType
   ContextEntitiesByEntityIdAndType,
   EntityByIdAttributeByNameIdAndType,
 
+  EntryPointsV2 = 2000,
+
   InvalidRequest
 } RequestType;
 
