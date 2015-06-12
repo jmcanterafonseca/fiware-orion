@@ -64,6 +64,13 @@ ifndef XSD_DIR
     XSD_DIR=/tmp/xsd
 endif
 
+# Filter for tests not to be executed under certain conditions
+FILTER_TEST_DIR=test/functionalTest/cases/283_coap_support
+
+ifeq ($(PROXY_COAP),1)
+  FILTER_TEST_DIR=
+endif
+
 all: prepare_release release
 
 di: install_debug
@@ -286,10 +293,11 @@ unit_test: build_unit_test
 	@echo '------------------------------- unit_test ended ---------------------------------'
 
 functional_test: install
-	./test/functionalTest/testHarness.sh
+	if []; then \
+	./test/functionalTest/testHarness.sh --filter $(FILTER_TEST_DIR)
 
 functional_test_debug: install_debug
-	./test/functionalTest/testHarness.sh
+	./test/functionalTest/testHarness.sh --filter $(FILTER_TEST_DIR)
 
 ft:  functional_test
 ftd: functional_test_debug

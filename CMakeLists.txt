@@ -148,6 +148,14 @@ if (UNIT_TEST)
 endif (UNIT_TEST)
 
 #
+# Proxy COAP
+#
+SET (PROXY_COAP 0)
+if ($ENV{PROXY_COAP})
+   SET (PROXY_COAP $ENV{PROXY_COAP})
+endif ($ENV{PROXY_COAP})
+
+#
 # Continuing if OK
 #
 if (error EQUAL 0)
@@ -170,7 +178,9 @@ if (error EQUAL 0)
   ADD_SUBDIRECTORY(src/lib/rest)
   ADD_SUBDIRECTORY(src/lib/mongoBackend)
   ADD_SUBDIRECTORY(src/app/contextBroker)
-  ADD_SUBDIRECTORY(src/app/proxyCoap)
+  if (PROXY_COAP EQUAL 1)
+    ADD_SUBDIRECTORY(src/app/proxyCoap)
+  endif (PROXY_COAP EQUAL 1)
 else ()
     MESSAGE("cmake: NOT OK")
 endif (error EQUAL 0)

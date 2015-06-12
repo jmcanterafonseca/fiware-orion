@@ -58,13 +58,9 @@ the only "officially supported" procedure is the one for CentOS 6.3; the others 
 and can get obsolete from time to time.
 
 **Note:** the build includes both contextBroker binary and proxyCoap. If you are not interested in proxyCoap
-at all, you can disable it just commenting out the following line in the CMakeList.txt file:
+at all, you can disable it by setting ```PROXY_COAP=1``` before running make
 
-```
-ADD_SUBDIRECTORY(src/app/proxyCoap)
-```
-
-and removing the following files:
+and removing the following files
 
 ```
 test/functionalTest/cases/coap_basic.test
