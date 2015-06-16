@@ -357,14 +357,14 @@ std::string ContextAttribute::toJson(bool isLastElement)
 {
   std::string  out;
   bool         isNumber = false;
-  bool         isString = true;
+  bool         isString = false;
 
   if (type == "number")
   {
     isNumber = true;
   }
 
-  if(type == "string")
+  if (type == "string")
   {
     isString = true;
   }

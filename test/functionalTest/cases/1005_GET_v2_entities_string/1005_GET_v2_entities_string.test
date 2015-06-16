@@ -54,7 +54,7 @@ payload='{
         },
         {
           "name" : "model",
-          "type": "string",
+          "type": "myString",
           "value" : "Klasse C"
         }
       ]
@@ -76,7 +76,7 @@ echo
 01. POST /v1/updateContext
 ==========================
 HTTP/1.1 200 OK
-Content-Length: 614
+Content-Length: 616
 Content-Type: application/json
 Date: REGEX(.*)
 
@@ -97,7 +97,7 @@ Date: REGEX(.*)
                     },
                     {
                         "name": "model",
-                        "type": "string",
+                        "type": "myString",
                         "value": ""
                     }
                 ],
@@ -117,7 +117,7 @@ Date: REGEX(.*)
 02. GET /v2/entities
 ====================
 HTTP/1.1 200 OK
-Content-Length: 86
+Content-Length: 114
 Content-Type: application/json
 Date: REGEX(.*)
 
@@ -125,7 +125,10 @@ Date: REGEX(.*)
     {
         "brand": "Mercedes Benz",
         "id": "8787GHY",
-        "model": "Klasse C",
+        "model": {
+            "type": "myString",
+            "value": "Klasse C"
+        },
         "speed": 150,
         "type": "Car"
     }
