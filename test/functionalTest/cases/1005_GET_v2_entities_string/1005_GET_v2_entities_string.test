@@ -53,6 +53,15 @@ payload='{
           "value" : "Mercedes Benz"
         },
         {
+          "name" : "plateCountry",
+          "value" : "ES"
+        },
+        {
+          "name" : "madeInCountry",
+          "value" : "DE",
+          "type" : ""
+        },
+        {
           "name" : "model",
           "type": "myString",
           "value" : "Klasse C"
@@ -76,7 +85,7 @@ echo
 01. POST /v1/updateContext
 ==========================
 HTTP/1.1 200 OK
-Content-Length: 616
+Content-Length: 841
 Content-Type: application/json
 Date: REGEX(.*)
 
@@ -93,6 +102,16 @@ Date: REGEX(.*)
                     {
                         "name": "brand",
                         "type": "string",
+                        "value": ""
+                    },
+                    {
+                        "name": "plateCountry",
+                        "type": "",
+                        "value": ""
+                    },
+                    {
+                        "name": "madeInCountry",
+                        "type": "",
                         "value": ""
                     },
                     {
@@ -117,7 +136,7 @@ Date: REGEX(.*)
 02. GET /v2/entities
 ====================
 HTTP/1.1 200 OK
-Content-Length: 114
+Content-Length: 155
 Content-Type: application/json
 Date: REGEX(.*)
 
@@ -125,10 +144,12 @@ Date: REGEX(.*)
     {
         "brand": "Mercedes Benz",
         "id": "8787GHY",
+        "madeInCountry": "DE",
         "model": {
             "type": "myString",
             "value": "Klasse C"
         },
+        "plateCountry": "ES",
         "speed": 150,
         "type": "Car"
     }
