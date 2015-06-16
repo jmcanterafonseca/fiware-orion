@@ -73,7 +73,6 @@ echo
 echo
 
 --REGEXPECT--
-
 01. POST /v1/updateContext
 ==========================
 HTTP/1.1 200 OK
@@ -126,11 +125,12 @@ Date: REGEX(.*)
     {
         "brand": "Mercedes Benz",
         "id": "8787GHY",
-        "model": "Klasse C"
+        "model": "Klasse C",
         "speed": 150,
         "type": "Car"
     }
 ]
+
 
 --TEARDOWN--
 brokerStop CB
