@@ -7,11 +7,13 @@ site_dir: html
 markdown_extensions: [toc,fenced_code]
 use_directory_urls: false
 theme: readthedocs
+extra_css: ["http://fiware.org/fiware.css"]
 pages:
   - Home: index.md
   - 'Getting Started': 'quick_start_guide.md'
-  - 'User Manual':
-      - Introduction: 'user/walkthrough_apiv1.md'
+  - 'User & Programmer Guide':
+      - Introduction: 'user/index.md'
+      - API Walthrough: 'user/walkthrough_apiv1.md'
       - 'Adding entities and attributes': 'user/append_and_delete.md'
       - 'Attribute Metadata': 'user/metadata.md'
       - 'Empty Types': 'user/empty_types.md'
@@ -30,7 +32,9 @@ pages:
       - 'Security considerations': 'user/security.md'
       - 'Known limitations': 'user/known_limitations.md'
       - 'Forbidden characters': 'user/forbidden_characters.md'
+      - Docker: 'user/docker.md'
   - 'Admin Guide':
+      - 'Introduction': 'admin/index.md'
       - 'Building from Sources': 'admin/build_source.md'
       - 'Running Orion from command line': 'admin/cli.md'
       - 'Database administration': 'admin/database_admin.md'
