@@ -1,3 +1,5 @@
+@import url("monokai_sublime.css");
+
 /*Estilos ogilvy*/
 .wy-side-nav-search{background-color:#00275a !important}
 .wy-side-nav-search a{color:#fff !important}
@@ -57,5 +59,3 @@ font-family:"Neo Tech W02 Bold";
 src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix");
 src:url("Fonts/742885/39974d8a-38de-4853-a4d1-778234a08061.eot?#iefix") format("eot"),url("Fonts/742885/99982ea6-cc23-4076-85e9-0a0bf3909a31.woff2") format("woff2"),url("Fonts/742885/c647fd16-b021-4fda-88fb-c69967cdb3b4.woff") format("woff"),url("Fonts/742885/a9afb560-1f8d-4920-865c-1325f98d4b82.ttf") format("truetype"),url("Fonts/742885/41720127-f18c-4437-a9eb-543a99d63fea.svg#41720127-f18c-4437-a9eb-543a99d63fea") format("svg");
 }
-
-@import url("monokai_sublime.css")
