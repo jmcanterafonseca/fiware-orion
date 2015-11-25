@@ -32,7 +32,7 @@ p{font-size:14px !important;line-height:auto !important}
 .fa-home:before, .icon-home:after{content:}
 #rtd-search-form{margin-top:10px !important}
 a.icon-home{color:#fff !important;font-family:"Neo Tech W02 Medium" !important;font-size:25px !important;font-weight:normal !important;color:#aeadb3 !important; text-transform:uppercase !important}
-.fa-home:before, .icon-home:before{content:url('../img/logo_orion2.png') !important}
+.fa-home:before, .icon-home:before{content:url('imgs/logo_orion2.png') !important}
 .wy-side-nav-search > a:hover, .wy-side-nav-search .wy-dropdown > a:hover{background-color:#00275a !important}
 
 /*Fin estilos ogilvy*/
