@@ -1,4 +1,7 @@
 /* Estilos ogilvy v2 */
+
+@import url("monokai_sublime_.css");
+
 .wy-nav-content {max-width: none !important}
 body{font-family:verdana !important}
 h1{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
