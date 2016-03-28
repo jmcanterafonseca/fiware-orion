@@ -1,7 +1,4 @@
-/*Estilos ogilvy v2 */
-
-@import url("monokai_sublime_.css");
-
+/* Estilos ogilvy v2 */
 .wy-nav-content {max-width: none !important}
 body{font-family:verdana !important}
 h1{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
@@ -11,7 +8,7 @@ h4{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
 a{color:#00275a !important}
 a:hover{color:#5dc0cf !important}
 a.icon-home{color:#fff !important;font-family:"Neo Tech W02 light" !important; font-weight:normal !important;color:#aeadb3 !important; text-transform:uppercase !important; margin:0 0 0 0 !important}
-.fa-home:before, .icon-home:before{content:url('imgs/logo_orion2.png') !important}
+.fa-home:before, .icon-home:before{content:url('imgs/logo_orion_nuevo.png') !important}
 .wy-menu-vertical {background-color:#f5f5f5 !important}
 .wy-menu-vertical li.current a{background-color:#b1b2b4 !important;border-right:0 !important}
 .wy-menu-vertical li.current a:hover{background-color:#b1b2b4 !important;border-right:0 !important}
@@ -35,13 +32,7 @@ nav > div.wy-menu.wy-menu-vertical > ul > li > a:hover{color:#ffffff !important}
 .fa-home:before, .icon-home:after{content:}
 a.icon-home{color:#fff !important;font-family:"Neo Tech W02 light" !important; font-weight:normal !important;color:#aeadb3 !important; text-transform:uppercase !important}
 a.icon-home p{color:#fff !important;font-family:"Neo Tech W02 light" !important;font-size:31px !important;font-weight:normal !important;color:#aeadb3 !important; text-transform:uppercase !important}
-.fa-home:before, .icon-home:before{content:url('imgs/logo_orion2.png') !important; clear:both !important; margin-bottom:15px !important;
-  font-family:"Neo Tech W02 light" !important;
-  font-size:31px !important;
-  font-weight:normal !important;
-  color:#aeadb3 !important; 
-  text-transform:uppercase !important
-}
+.fa-home:before, .icon-home:before{content:url('imgs/logo_solo.png') !important; clear:both !important; margin-bottom:15px !important;}
 .wy-side-nav-search > a:hover, .wy-side-nav-search .wy-dropdown > a:hover{background-color:#00275a !important}
 b, strong {font-weight:normal !important}
 .rst-versions .rst-other-versions dt{font-weight:bold !important}
