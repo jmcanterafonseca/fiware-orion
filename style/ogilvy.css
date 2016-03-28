@@ -1,4 +1,7 @@
 /*Estilos ogilvy v2 */
+
+@import url("monokai_sublime_.css");
+
 .wy-nav-content {max-width: none !important}
 body{font-family:verdana !important}
 h1{color:#00275a !important;font-family:"Neo Tech W02 Medium" !important}
@@ -39,8 +42,3 @@ b, strong {font-weight:normal !important}
 .wy-body-for-nav{background-image:none !important}
 .wy-nav-side{background-color:transparent !important}
 /*Fin estilos ogilvy*/
-
-/* Custom width read the docs */
-.wy-nav-content {
-  max-width: none !important;
-}
