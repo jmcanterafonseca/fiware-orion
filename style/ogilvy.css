@@ -35,7 +35,13 @@ nav > div.wy-menu.wy-menu-vertical > ul > li > a:hover{color:#ffffff !important}
 .fa-home:before, .icon-home:after{content:}
 a.icon-home{color:#fff !important;font-family:"Neo Tech W02 light" !important; font-weight:normal !important;color:#aeadb3 !important; text-transform:uppercase !important}
 a.icon-home p{color:#fff !important;font-family:"Neo Tech W02 light" !important;font-size:31px !important;font-weight:normal !important;color:#aeadb3 !important; text-transform:uppercase !important}
-.fa-home:before, .icon-home:before{content:url('imgs/logo_orion2.png') !important; clear:both !important; margin-bottom:15px !important;}
+.fa-home:before, .icon-home:before{content:url('imgs/logo_orion2.png') !important; clear:both !important; margin-bottom:15px !important;
+  font-family:"Neo Tech W02 light" !important;
+  font-size:31px !important;
+  font-weight:normal !important;
+  color:#aeadb3 !important; 
+  text-transform:uppercase !important
+}
 .wy-side-nav-search > a:hover, .wy-side-nav-search .wy-dropdown > a:hover{background-color:#00275a !important}
 b, strong {font-weight:normal !important}
 .rst-versions .rst-other-versions dt{font-weight:bold !important}
