@@ -12,7 +12,7 @@ pages:
   - Home: index.md
   - 'Getting Started':
       - 'Quick Start Guide': 'quick_start_guide.md'
-      - 'NGSI version 2 Cookbook': 'http://fiware.github.io/context.Orion/api/v2/stable/cookbook/'
+      - 'NGSI version 2 Cookbook - ': 'http://fiware.github.io/context.Orion/api/v2/stable/cookbook/'
   - 'User & Programmers Manual':
       - 'Introduction': 'user/index.md'
       - 'API Walkthrough (v2)': 'user/walkthrough_apiv2.md'
